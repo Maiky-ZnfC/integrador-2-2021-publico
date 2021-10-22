@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 22-10-2021 a las 02:17:58
+-- Tiempo de generación: 22-10-2021 a las 02:30:58
 -- Versión del servidor: 10.4.17-MariaDB
 -- Versión de PHP: 8.0.1
 
@@ -32,6 +32,13 @@ CREATE TABLE `administrador` (
   `UsuarioCod` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Volcado de datos para la tabla `administrador`
+--
+
+INSERT INTO `administrador` (`AdministradorCod`, `UsuarioCod`) VALUES
+(1, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -45,6 +52,13 @@ CREATE TABLE `comprador` (
   `Correo` varchar(60) NOT NULL,
   `FechaNacimiento` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `comprador`
+--
+
+INSERT INTO `comprador` (`CompradorCod`, `UsuarioCod`, `Celular`, `Correo`, `FechaNacimiento`) VALUES
+(1, 2, 987654321, 'example@gmail.com', '2000-10-04');
 
 -- --------------------------------------------------------
 
@@ -195,6 +209,15 @@ CREATE TABLE `usuario` (
   `FechaRegistro` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Volcado de datos para la tabla `usuario`
+--
+
+INSERT INTO `usuario` (`UsuarioCod`, `Nombre`, `NombreUsuario`, `Contrasena`, `FechaRegistro`) VALUES
+(1, 'Administrador', 'admin', 'admin', '2021-10-21'),
+(2, 'User1', 'user1', 'user1', '2021-10-21'),
+(3, 'Ventas1', 'ventas1', 'ventas1', '2021-10-21');
+
 -- --------------------------------------------------------
 
 --
@@ -205,6 +228,13 @@ CREATE TABLE `vendedor` (
   `VendedorCod` int(11) NOT NULL,
   `UsuarioCod` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `vendedor`
+--
+
+INSERT INTO `vendedor` (`VendedorCod`, `UsuarioCod`) VALUES
+(1, 3);
 
 --
 -- Índices para tablas volcadas
@@ -315,13 +345,13 @@ ALTER TABLE `vendedor`
 -- AUTO_INCREMENT de la tabla `administrador`
 --
 ALTER TABLE `administrador`
-  MODIFY `AdministradorCod` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `AdministradorCod` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `comprador`
 --
 ALTER TABLE `comprador`
-  MODIFY `CompradorCod` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `CompradorCod` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `pago`
@@ -381,13 +411,13 @@ ALTER TABLE `tipopedido`
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `UsuarioCod` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `UsuarioCod` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `vendedor`
 --
 ALTER TABLE `vendedor`
-  MODIFY `VendedorCod` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `VendedorCod` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Restricciones para tablas volcadas
