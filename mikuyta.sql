@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 22-10-2021 a las 01:58:05
+-- Tiempo de generación: 22-10-2021 a las 02:17:58
 -- Versión del servidor: 10.4.17-MariaDB
 -- Versión de PHP: 8.0.1
 
@@ -214,37 +214,46 @@ CREATE TABLE `vendedor` (
 -- Indices de la tabla `administrador`
 --
 ALTER TABLE `administrador`
-  ADD PRIMARY KEY (`AdministradorCod`);
+  ADD PRIMARY KEY (`AdministradorCod`),
+  ADD KEY `UsuarioCod` (`UsuarioCod`);
 
 --
 -- Indices de la tabla `comprador`
 --
 ALTER TABLE `comprador`
-  ADD PRIMARY KEY (`CompradorCod`);
+  ADD PRIMARY KEY (`CompradorCod`),
+  ADD KEY `UsuarioCod` (`UsuarioCod`);
 
 --
 -- Indices de la tabla `detallepedido`
 --
 ALTER TABLE `detallepedido`
-  ADD PRIMARY KEY (`PedidoCod`,`ProductoCod`);
+  ADD PRIMARY KEY (`PedidoCod`,`ProductoCod`),
+  ADD KEY `ProductoCod` (`ProductoCod`);
 
 --
 -- Indices de la tabla `pago`
 --
 ALTER TABLE `pago`
-  ADD PRIMARY KEY (`PagoCod`);
+  ADD PRIMARY KEY (`PagoCod`),
+  ADD KEY `TipoPagoCod` (`TipoPagoCod`);
 
 --
 -- Indices de la tabla `pedido`
 --
 ALTER TABLE `pedido`
-  ADD PRIMARY KEY (`PedidoCod`);
+  ADD PRIMARY KEY (`PedidoCod`),
+  ADD KEY `VendedorCod` (`VendedorCod`),
+  ADD KEY `CompradorCod` (`CompradorCod`),
+  ADD KEY `TipoPedidoCod` (`TipoPedidoCod`),
+  ADD KEY `PagoCod` (`PagoCod`);
 
 --
 -- Indices de la tabla `pedidomesa`
 --
 ALTER TABLE `pedidomesa`
-  ADD PRIMARY KEY (`PedidoMesaCod`);
+  ADD PRIMARY KEY (`PedidoMesaCod`),
+  ADD KEY `TipoPedidoCod` (`TipoPedidoCod`);
 
 --
 -- Indices de la tabla `producto`
@@ -262,13 +271,16 @@ ALTER TABLE `repartidor`
 -- Indices de la tabla `reparto`
 --
 ALTER TABLE `reparto`
-  ADD PRIMARY KEY (`RepartoCod`);
+  ADD PRIMARY KEY (`RepartoCod`),
+  ADD KEY `TipoPedidoCod` (`TipoPedidoCod`),
+  ADD KEY `RepartidorCod` (`RepartidorCod`);
 
 --
 -- Indices de la tabla `reserva`
 --
 ALTER TABLE `reserva`
-  ADD PRIMARY KEY (`ReservaCod`);
+  ADD PRIMARY KEY (`ReservaCod`),
+  ADD KEY `TipoPedidoCod` (`TipoPedidoCod`);
 
 --
 -- Indices de la tabla `tipopago`
@@ -292,7 +304,8 @@ ALTER TABLE `usuario`
 -- Indices de la tabla `vendedor`
 --
 ALTER TABLE `vendedor`
-  ADD PRIMARY KEY (`VendedorCod`);
+  ADD PRIMARY KEY (`VendedorCod`),
+  ADD KEY `UsuarioCod` (`UsuarioCod`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
@@ -375,6 +388,69 @@ ALTER TABLE `usuario`
 --
 ALTER TABLE `vendedor`
   MODIFY `VendedorCod` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- Restricciones para tablas volcadas
+--
+
+--
+-- Filtros para la tabla `administrador`
+--
+ALTER TABLE `administrador`
+  ADD CONSTRAINT `administrador_ibfk_1` FOREIGN KEY (`UsuarioCod`) REFERENCES `usuario` (`UsuarioCod`) ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `comprador`
+--
+ALTER TABLE `comprador`
+  ADD CONSTRAINT `comprador_ibfk_1` FOREIGN KEY (`UsuarioCod`) REFERENCES `usuario` (`UsuarioCod`) ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `detallepedido`
+--
+ALTER TABLE `detallepedido`
+  ADD CONSTRAINT `detallepedido_ibfk_1` FOREIGN KEY (`PedidoCod`) REFERENCES `pedido` (`PedidoCod`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `detallepedido_ibfk_2` FOREIGN KEY (`ProductoCod`) REFERENCES `producto` (`ProductoCod`) ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `pago`
+--
+ALTER TABLE `pago`
+  ADD CONSTRAINT `pago_ibfk_1` FOREIGN KEY (`TipoPagoCod`) REFERENCES `tipopago` (`TipoPagoCod`) ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `pedido`
+--
+ALTER TABLE `pedido`
+  ADD CONSTRAINT `pedido_ibfk_1` FOREIGN KEY (`VendedorCod`) REFERENCES `vendedor` (`VendedorCod`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `pedido_ibfk_2` FOREIGN KEY (`CompradorCod`) REFERENCES `comprador` (`CompradorCod`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `pedido_ibfk_3` FOREIGN KEY (`TipoPedidoCod`) REFERENCES `tipopedido` (`TipoPedidoCod`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `pedido_ibfk_4` FOREIGN KEY (`PagoCod`) REFERENCES `pago` (`PagoCod`) ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `pedidomesa`
+--
+ALTER TABLE `pedidomesa`
+  ADD CONSTRAINT `pedidomesa_ibfk_1` FOREIGN KEY (`TipoPedidoCod`) REFERENCES `tipopedido` (`TipoPedidoCod`) ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `reparto`
+--
+ALTER TABLE `reparto`
+  ADD CONSTRAINT `reparto_ibfk_1` FOREIGN KEY (`TipoPedidoCod`) REFERENCES `tipopedido` (`TipoPedidoCod`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `reparto_ibfk_2` FOREIGN KEY (`RepartidorCod`) REFERENCES `repartidor` (`RepartidorCod`) ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `reserva`
+--
+ALTER TABLE `reserva`
+  ADD CONSTRAINT `reserva_ibfk_1` FOREIGN KEY (`TipoPedidoCod`) REFERENCES `tipopedido` (`TipoPedidoCod`) ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `vendedor`
+--
+ALTER TABLE `vendedor`
+  ADD CONSTRAINT `vendedor_ibfk_1` FOREIGN KEY (`UsuarioCod`) REFERENCES `usuario` (`UsuarioCod`) ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
