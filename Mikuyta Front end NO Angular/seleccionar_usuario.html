@@ -15,8 +15,13 @@
 		.container-fluid {
 			width: 600px;
 		}
+
+		fieldset {
+			/* height: 600px; */
+			/* max-height: 100vh; */
+		}
 	</style>
-	<title>Ingresar</title>
+	<title>Seleccionar Usuario</title>
 </head>
 <body>
 	<!-- Plantilla Marco -->
@@ -25,24 +30,17 @@
 		<div class="row vh-100 justify-content-center align-items-center">
 			<div class="col">
 				<form>
-					<fieldset>
+					<fieldset class="mw-100">
 						<legend class="float-none w-auto mx-auto px-3"><img class="mt-5 mw-100" src="https://1000marcas.net/wp-content/uploads/2020/02/logo-Google.png" alt="Login"></legend>
 						<div class="controles mx-auto">
 							<!-- Fuera de la plantilla -->
-							<div class="mb-3">
-								<label class="form-label" for="Usuario">Usuario</label>
-								<input class="form-control" type="text" id="Usuario" name="Usuario">
-							</div>
-							<div class="mb-4">
-								<label class="form-label" for="Contrasena">Contraseña</label>
-								<input class="form-control" type="password" id="Contrasena" name="Contrasena">
-							</div>
-							<div class="mb-4 text-center">
-								<button class="btn btn-primary" type="submit">Iniciar Sesión&nbsp;&nbsp;<i class="bi bi-box-arrow-right"></i></button>
-							</div>
-							<div class="mb-3 text-center">
-								<label class="form-text">¿No tienes una cuenta?</label>
-								<button class="btn btn-success rounded-pill" type="submit">Registrate</button>
+							<div class="row mb-5">
+								<div class="col text-center">
+									<button class="btn btn-success" type="button">Soy Consumidor</button>
+								</div>
+								<div class="col text-center">
+									<button class="btn btn-primary" type="button">Soy Empresa</button>
+								</div>
 							</div>
 							<!-- Fin fuera de la plantilla -->
 						</div>

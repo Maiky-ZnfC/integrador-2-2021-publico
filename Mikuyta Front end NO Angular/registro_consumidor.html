@@ -16,7 +16,7 @@
 			width: 600px;
 		}
 	</style>
-	<title>Ingresar</title>
+	<title>Registro Comprador</title>
 </head>
 <body>
 	<!-- Plantilla Marco -->
@@ -29,20 +29,34 @@
 						<legend class="float-none w-auto mx-auto px-3"><img class="mt-5 mw-100" src="https://1000marcas.net/wp-content/uploads/2020/02/logo-Google.png" alt="Login"></legend>
 						<div class="controles mx-auto">
 							<!-- Fuera de la plantilla -->
-							<div class="mb-3">
-								<label class="form-label" for="Usuario">Usuario</label>
-								<input class="form-control" type="text" id="Usuario" name="Usuario">
-							</div>
-							<div class="mb-4">
-								<label class="form-label" for="Contrasena">Contraseña</label>
-								<input class="form-control" type="password" id="Contrasena" name="Contrasena">
+							<div class="row mb-1">
+								<div class="col">
+									<div class="mb-3">
+										<label class="form-label" for="Nombre">Nombre Completo</label>
+										<input class="form-control" type="text" id="Nombre" name="Nombre">
+									</div>
+									<div class="mb-3">
+										<label class="form-label" for="Correo">Correo electrónico</label>
+										<input class="form-control" type="email" id="Correo" name="Correo">
+									</div>
+								</div>
+								<div class="col">
+									<div class="mb-3">
+										<label class="form-label" for="Telefono">Teléfono</label>
+										<input class="form-control" type="number" id="Telefono" name="Telefono">
+									</div>
+									<div class="mb-3">
+										<label class="form-label" for="Contrasena">Contraseña</label>
+										<input class="form-control" type="password" id="Contrasena" name="Contrasena">
+									</div>
+								</div>
 							</div>
 							<div class="mb-4 text-center">
-								<button class="btn btn-primary" type="submit">Iniciar Sesión&nbsp;&nbsp;<i class="bi bi-box-arrow-right"></i></button>
+								<button class="btn btn-primary" type="submit">Registrarme&nbsp;&nbsp;<i class="bi bi-person-plus-fill"></i></button>
 							</div>
 							<div class="mb-3 text-center">
-								<label class="form-text">¿No tienes una cuenta?</label>
-								<button class="btn btn-success rounded-pill" type="submit">Registrate</button>
+								<label class="form-text">¿Ya tienes una cuenta?</label>
+								<button class="btn btn-success rounded-pill" type="submit">Inicia Sesión</button>
 							</div>
 							<!-- Fin fuera de la plantilla -->
 						</div>
