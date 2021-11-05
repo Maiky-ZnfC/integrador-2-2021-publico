@@ -16,6 +16,9 @@
 			width: 600px;
 		}
 	</style>
+	<!-- AngularJS solo para separar la plantilla de los datos -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.2/angular.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-route/1.8.2/angular-route.min.js"></script>
 	<title>Ingresar</title>
 </head>
 <body>
@@ -29,6 +32,35 @@
 						<legend class="float-none w-auto mx-auto px-3"><img class="mt-5 mw-100" src="https://1000marcas.net/wp-content/uploads/2020/02/logo-Google.png" alt="Login"></legend>
 						<div class="controles mx-auto">
 							<!-- Fuera de la plantilla -->
+							<div ng-app="loginApp" ng-controller="myCtrl">
+								<a href="#!ingreso">ingreso</a>
+								<a href="#!seleccionar_usuario">seleccionar_usuario</a>
+								<a href="#!registro_consumidor">registro_consumidor</a>
+								<a href="#!registro_vendedor">registro_vendedor</a>
+								<div ng-view></div>
+							</div>
+							<script type="text/javascript">
+								let app = angular.module('loginApp', ['ngRoute']);
+								app.config(function($routeProvider) {
+									$routeProvider
+										.when('/ingreso', {
+											templateUrl: 'ingreso.html',
+											controller : ''
+										})
+										.when('/seleccionar_usuario', {
+											templateUrl: 'seleccionar_usuario.html'
+										})
+										.when('/registro_consumidor', {
+											templateUrl: 'registro_consumidor.html'
+										})
+										.when('/registro_vendedor', {
+											templateUrl: 'registro_vendedor.html'
+										});
+								});
+								app.controller('myCtrl', function($scope) {
+									$scope;
+								});
+							</script>
 							<!-- Fin fuera de la plantilla -->
 						</div>
 					</fieldset>
